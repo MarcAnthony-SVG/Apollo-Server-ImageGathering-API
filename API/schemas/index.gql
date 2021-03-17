@@ -1,0 +1,43 @@
+const { gql } = require ('apollo-server-micro');
+
+const typeDefs = gql`
+  type Query {
+    ##############Twitter###############
+    tweet(id: ID!): Tweet
+    artist(username: String): Artist
+    searched(text: String): [Tweet]
+    ##############Pixabay###############
+    images: [Image]
+    searched_PB_By_Style(style: String): [Image]
+  }
+  type Image {
+    id: ID
+    tags: String
+    largeImageURL: String
+    likes: Int
+    user: String
+  }
+  type Tweet {
+    id: ID
+    text: String
+  }
+  type Entity {
+    hashtags: [HashTag]
+    urls: [Url]
+  }
+  type HashTag {
+    tags: String!
+  }
+  type Url {
+    _url: String!
+  }
+  type Artist {
+    id: ID!
+    name: String
+    username: String!
+    profile_image_url: String! # We will use this to show the artist to the customer
+    location: String # We will use this to match relevent artist with the customer
+    url: String # We will use this to link to the artist
+  }
+`;
+module.exports.typeDefs = typeDefs
