@@ -4,7 +4,6 @@ const { TwitterAPI } = require('./datasources/index.js');
 const { typeDefs } = require('./schemas/index.gql');
 const { resolvers } = require('./resolvers/index.js');
 
-
 require('dotenv').config();
 const server = new ApolloServer({
   typeDefs,
@@ -28,7 +27,6 @@ const server = new ApolloServer({
 //     bodyParser: false,
 //   },
 // };
-server.listen().then(({ url }) => {
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
-
