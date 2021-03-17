@@ -3,7 +3,6 @@ const { TwitterAPI } = require('./API/datasources/index.js');
 const { resolvers } = require('./API/resolvers/index.js');
 const { typeDefs } = require('./API/schemas/index.gql');
 
-
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
@@ -13,6 +12,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   playground: true,
+  introspection: true,
   tracing: true,
   dataSources: () => {
     return {
@@ -35,8 +35,8 @@ app.use((req, res) => {
   res.end();
 });
 
-app.listen({ port: 4000 }, () =>
+app.listen({ port: process.env.PORT || 4000 }, () =>
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
-)
+);
 
 // console.log(`🚀 Server ready at http://localhost:4000/graphql`);
