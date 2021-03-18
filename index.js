@@ -7,6 +7,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   tracing: true,
+  introspection: true,
+  playground: true,
   dataSources: () => {
     return {
       twitterAPI: new TwitterAPI(),
