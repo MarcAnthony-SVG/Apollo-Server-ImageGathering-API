@@ -22,6 +22,11 @@ const server = new ApolloServer({
   },
 });
 
+const isDev = process.env.NODE_ENV !== 'production';
+const url = isDev
+  ? 'https://localhost:4000'
+  : 'https://apollo-server--api.herokuapp.com/';
+
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
